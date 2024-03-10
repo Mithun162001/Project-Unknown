@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dish Order List</title>
+    <link rel="stylesheet" href="/styles/queries.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rubik:wght@900&family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <style>
+      html {
+        font-family: "poppins", sans-serif;
+        font-weight: 400;
+        color: #555;
+        background-color: #fdf2e9;
+        scroll-behavior: smooth;
+      }
+      .custom-header-top {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      .custom-header {
+        font-family: "poppins", sans-serif;
+        text-align: center;
+        font-size: 30px;
+        margin: 50px;
+      }
+      .container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 10px;
+        border: none;
+        margin-top: 5%;
+      }
+      .input-section {
+        background-color: #fae5ae;
+        text-align: center;
+        margin: -40px auto; /* Reduced margin */
+        width: 70%; /* Adjusted width */
+        border-radius: 11px;
+        padding: 20px; /* Reduced padding */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      .input-section input {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 10px;
+        margin-bottom: 10px; /* Added margin bottom */
+        width: calc(100% - 20px); /* Adjusted width */
+        font-family: "poppins", sans-serif;
+        color: inherit;
+        border: none;
+      }
+      .input-container {
+        display: flex;
+        align-items: center; /* Align items horizontally */
+        justify-content: center; /* Align items horizontally */
+        gap: 5px; /* Reduced gap between elements */
+      }
+      .btn {
+        font-family: "poppins", sans-serif;
+        background-color: #595854;
+        color: #fff;
+        cursor: pointer;
+        padding: 5px 10px; /* Adjusted padding */
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: all 0.3s;
+      }
+      .custom-delivery-date,
+      .custom-no-of-people {
+        margin-top: 15px; /* Increased margin between sections */
+      }
+      .list-section {
+        margin: 30px auto; /* Reduced margin */
+        width: 70%; /* Adjusted width */
+        background-color: #ffffff;
+        border: 3px solid #fae5ae;
+        border-radius: 11px;
+        padding: 20px; /* Reduced padding */
+        transition: all 0.3s;
+      }
+      .custom-page-submit {
+        font-size: 16px;
+        font-family: "poppins", sans-serif;
+        padding: 10px 20px;
+        margin: 20px auto; /* Adjusted margin */
+        border-radius: 8px;
+        border: none;
+        background-color: #595854;
+        color: #fff;
+        transition: 0.3s;
+      }
+      .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="custom-header-top">
+      <h1 class="custom-header">Customise Your Order</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="input-section">
+          <form action="/makeorder" method="post">
+            <div class="input-container">
+              <input type="text" id="dishName" placeholder="Add Dish Name" />
+              <button class="btn" onclick="addDish()">
+                <ion-icon class="btn" name="add-outline"></ion-icon>
+              </button>
+            </div>
+            <!-- <input type="text" id="quantity" placeholder="Caterer name" required /> -->
+            <br />
+            <label
+              class="custom-delivery-date deliveryDate"
+              for="deliveryDateInput"
+              >Choose a delivery date:</label
+            ><br />
+            <input
+              class="custom-input-date deliveryDateInput"
+              type="date"
+              required
+              min="<?php echo date('Y-m-d'); ?>"
+            />
+            <div class="error-message" id="dateErrorMessage"></div>
+            <br />
+            <label
+              class="custom-delivery-date custom-no-of-people"
+              for="peopleInput"
+              >Enter the number of people:</label
+            ><br />
+            <input
+              class="custom-input-date custom-no-of-people-input"
+              type="number"
+              id="no-of-people"
+              required
+            />
+          </form>
+        </div>
+        <div class="list-section" id="dishList">
+          <h2 class="list-section-header">Selected Dishes</h2>
+        </div>
+
+        <a href="trackorder"
+          ><button id="submit-order" type="submit" class="custom-page-submit">
+            Request Order
+          </button>
+        </a>
+      </div>
+    </main>
+    <script>
+      // Function to add a new dish item
+      function addDish() {
+        const dishName = document.getElementById("dishName").value;
+        if (dishName === "") {
+          alert("Please enter all fields");
+          return;
+        }
+        const listSection = document.getElementById("dishList");
+        const dishItem = document.createElement("div");
+        dishItem.classList.add("dish-item");
+        dishItem.innerHTML = `<span>${dishName} </span>
+<button onclick="deleteDish(this)">Delete</button>`;
+        listSection.appendChild(dishItem);
+        // Clear input fields after adding
+        document.getElementById("dishName").value = "";
+        // Enable the request order button
+        // toggleRequestOrderButton();
+      }
+      // Function to delete a dish item
+      function deleteDish(buttonElement) {
+        const dishItem = buttonElement.parentElement;
+        dishItem.remove();
+        // Check if there are any dish items left after deletion
+        //toggleRequestOrderButton();
+      }
+      // Function to enable or disable the request order button
+      // function toggleRequestOrderButton() {
+      // const submitButton = document.getElementById("submit-order");
+      // const peopleInput = document.getElementById("no-of-people").value;
+      // const dateInput = document.getElementById("deliveryDateInput").value;
+      // const dishItemsExist = document.querySelectorAll(".dish-item").length > 0;
+      // if (dateInput && peopleInput && dishItemsExist) {
+      // submitButton.disabled = false; // Enable the button if date is entered and there are selected dishes
+      // } else {
+      // submitButton.disabled = true; // Disable the button if date is empty or there are no selected dishes
+      // }
+      // }
+      // Function to validate the order before submission
+      // function validateOrder() {
+      // const deliveryDate = document.getElementById("deliveryDateInput").value;
+      // const today = new Date();
+      // const selectedDate = new Date(deliveryDate);
+      // const errorMessage = document.getElementById("dateErrorMessage");
+      // if (selectedDate < today) {
+      // errorMessage.textContent = "Please select a valid future date.";
+      // return false;
+      // }
+      // // Clear the error message if the date is valid
+      // errorMessage.textContent = "";
+      // // Proceed with the order submission
+      // submitOrder();
+      // }
+      // // Func   tion to submit the order
+      // function submitOrder() {
+      // var selectedDishes = getSelectedDishes();
+      // var deliveryDate = document.getElementById("deliveryDateInput").value;
+      // if (selectedDishes && deliveryDate) {
+      // window.location.href = "trackorder?selectedDishes=" + encodeURIComponent(selectedDishes) + "&deliveryDate=" + encodeURIComponent(deliveryDate);
+      // } else {
+      // alert("Please add dishes and select a delivery date before submitting the order.");
+      // }
+      // }
+      // // Function to get the list of selected dishes
+      // function getSelectedDishes() {
+      // var selectedDishes = [];
+      // var dishItems = document.querySelectorAll(".dish-item span");
+      // dishItems.forEach(function (dishItem) {
+      // selectedDishes.push(dishItem.textContent);
+      // });
+      // return selectedDishes.join(",");
+      // }
+      // // Event listener for the "change" event of the date input
+      // document.getElementById("deliveryDateInput").addEventListener("change", function () {
+      // // Enable or disable the request order button when the date is changed
+      // toggleRequestOrderButton();
+      // });
+    </script>
+  </body>
+</html>

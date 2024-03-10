@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order</title>
+<link rel="stylesheet" href="/styles/queries.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rubik:wght@900&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* Add your CSS styles here */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fdf2e9;
+  color: #1b2021;
+}
+.track-order-header-top {
+  text-align: center;
+  margin: 50px;
+}
+.track-order-header {
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
+}
+.track-order-list {
+  margin: 30px auto;
+  width: 80%;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+}
+.track-order-list-heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.track-order-list p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.track-order-date {
+  margin: 30px auto;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.track-order-heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.price-of-order {
+  margin: 30px auto;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.price-of-order-tag {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.track-order-make-payment {
+  display: block;
+  width: fit-content;
+  padding: 15px 30px;
+  margin: 30px auto;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.track-order-make-payment:hover {
+  background-color: #ff4d40;
+}
+</style>
+</head>
+<body>
+<header class="track-order-header-top">
+<h1 class="track-order-header">Track Order</h1>
+</header>
+<main>
+<div id="dishList" class="track-order-list">
+<h2 class="track-order-list-heading">Order List</h2>
+<!-- List of dishes will be displayed here -->
+</div>
+<div class="track-order-date">
+<h2 class="track-order-heading">Ordered date:</h2>
+<p><span id="deliveryDatePlaceholder"></span></p>
+</div>
+<div class="price-of-order">
+<h2 class="price-of-order-tag">Your Price is :</h2>
+<!-- Price information will be displayed here -->
+</div>
+<button class="track-order-make-payment">
+<a href="payment">Make Payment</a>
+</button>
+</main>
+<script>
+window.onload = function () {
+// Get URL parameters
+var urlParams = new URLSearchParams(window.location.search);
+var selectedDishes = urlParams.get("selectedDishes");
+var deliveryDate = urlParams.get("deliveryDate");
+
+// Check if selectedDishes parameter exists
+if (selectedDishes) {
+// Split the selectedDishes string into an array of dishes
+var dishesArray = selectedDishes.split(",");
+
+// Get the dishList container
+var dishListContainer = document.getElementById("dishList");
+
+// Create a list element for each dish and append it to the dishListContainer
+dishesArray.forEach(function (dish) {
+var dishListItem = document.createElement("p");
+dishListItem.textContent = "• " + dish; // Adding bullet point
+dishListItem.style.marginBottom = "10px"; // Adding space between dishes
+dishListContainer.appendChild(dishListItem);
+});
+}
+
+// Check if deliveryDate parameter exists
+if (deliveryDate) {
+// Display the delivery date
+document.getElementById("deliveryDatePlaceholder").textContent =
+deliveryDate;
+}
+};
+</script>
+</body>
+</html>

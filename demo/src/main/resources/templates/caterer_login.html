@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Cloud Kitchen Caterer</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-image: url("https://source.unsplash.com/1600x900/?kitchen");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #ffffff;
+      }
+      .container {
+        max-width: 800px;
+        margin: 100px auto;
+        padding: 50px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      h2.animated-text {
+        font-family: "Arial", sans-serif;
+        font-size: 28px;
+        color: #333;
+        animation: textAnimation 3s infinite;
+      }
+      @keyframes textAnimation {
+        0% {
+          color: #333;
+        }
+        50% {
+          color: #007bff;
+        }
+        100% {
+          color: #333;
+        }
+      }
+      .form-group input[type="text"],
+      .form-group input[type="password"] {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 12px;
+        width: 100%;
+        font-size: 16px;
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 12px;
+        width: 100%;
+        font-size: 16px;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+      .signup-link {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #333;
+      }
+      a {
+        color: #007bff;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="animated-text">Caterer Login to Cloud Kitchen</h2>
+      </div>
+      <form th:action="@{/caterer/login}" method="post">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Username"
+            required
+            th:autofocus="true"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+      <p class="signup-link">
+        Don't have an account? <a href="/caterer_signup">Sign up</a>
+      </p>
+      <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <p th:text="${errorMessage}"></p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,892 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-family: "rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    min-height: 100vh;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
+    background-color: #fdf2e9;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+  
+    /* only works if there is nothing absolutely positioned in relation to body */
+    overflow-x: hidden;
+  }
+  /*.user-dashboard {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+      url(/images/welcome-page-img.avif) center/cover no-repeat;
+    min-height: 100vh;
+    margin-top:10%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-content: center;
+    position: relative;
+  }*/
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    padding: 0 20px;
+  }
+  
+  .sticky .container {
+    margin-top: 9.6rem;
+  }
+  
+  .logo {
+    height: 16rem;
+  }
+  .sticky .header {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 8rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.973);
+    z-index: 999;
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.04);
+  }
+  
+  .nav-list {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 15px;
+    list-style: none;
+    /* z-index: 10; */
+    /* -webkit-box-shadow: 0 8px 6px -6px black;
+       -moz-box-shadow: 0 8px 6px -6px black;
+            box-shadow: 0 6px 6px -6px black; */
+  }
+  
+  .nav-list a {
+    text-decoration: none;
+    color: #2c2c2a;
+    /* display: inline-block; */
+    font-family: "ubuntu", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 14px 45px;
+    font-size: 15px;
+  }
+  
+  .nav-list-link:link,
+  .nav-list-link:visited {
+    color: #595854;
+    font-weight: 400;
+    font-size: 20px;
+    transition: all 0.3s;
+  }
+  
+  .nav-list-link:hover,
+  .nav-list-link:active {
+    color: #282826;
+  }
+  .nav-list-link .nav-list-link.link2 {
+    padding-right: 10px;
+  }
+  
+  /* MOBILE */
+  .btn-mobile-nav {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: none;
+  }
+  .icon-mobile-nav {
+    height: 4.8rem;
+    width: 4.8rem;
+    color: #333;
+  }
+  .icon-mobile-nav[name="close-outline"] {
+    display: none;
+  }
+  
+  .containers {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)),
+      url(/images/welcome-page-img.avif) center/cover no-repeat;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 15px;
+    /* position: relative; */
+  
+    /* min-height: 100vh; 
+      padding-bottom: 50px;  */
+  }
+  
+  .home-container {
+    position: relative;
+  }
+  
+  .welcome-page-heading {
+    font-family: "Poppins", sans-serif;
+    font-size: 65px;
+    font-weight: bold;
+    text-align: left;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 100%;
+    margin: 0px;
+    /* padding: 0 20px; */
+    text-align: left;
+    line-height: 1.02;
+    color: #dedbd2;
+    letter-spacing: -1.3px;
+  }
+  
+  .caterer-button {
+    position: absolute;
+    bottom: 160px; /* Adjust the space from the bottom */
+    left: 100px;
+    /* transform: translateX(-50%);  */
+    padding: 20px 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    border: none;
+  
+    background-color: rgb(164, 132, 72);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  /* HOME CONTAINER*/
+  
+  .home-container {
+    color: #fff;
+    max-width: 1170px;
+    width: 100%;
+    /* background-color: red; */
+    margin: auto;
+  }
+  /* .container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  } */
+  .welcome-section-list {
+    border-radius: 5px;
+    max-height: 200px;
+  }
+  .welcome-section-list select {
+    color: #282826;
+    margin: 200px auto;
+    padding: 10px 70px;
+    font-size: 15px;
+    font-family: "poppins", sans-serif;
+    /* color: inherit; */
+    border: none;
+    background-color: #d9d9d9;
+    border-radius: 9px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  /********************/
+  /* BELOW 1344px  (smaller desktops) */
+  /********************/
+  
+  @media (max-width: 1344px) {
+    .user-dashboard {
+      max-width: 120rem;
+    }
+    .home-container {
+      max-width: 120rem;
+      margin-left: 50px;
+    }
+    .track-order-make-payment {
+      margin: 10px 550px;
+    }
+    .input-section {
+      margin: auto;
+    }
+    .list-section {
+      margin: 10px auto;
+    }
+  }
+  
+  /********************/
+  /* BELOW 1200px  (landscape Tablets) */
+  /********************/
+  
+  @media (max-width: 1200px) {
+    html {
+      font-size: 56.25%;
+    }
+    .logo {
+      height: 225px;
+    }
+  
+    .header {
+      padding: 0 3.2rem;
+    }
+  
+    .nav-list a {
+      gap: 2.8rem;
+    }
+    .welcome-section-list select {
+      padding: 10px 50px;
+    }
+    .home-container {
+      gap: 4.8rem;
+    }
+    .welcome-page-heading {
+      font-size: 50px;
+    }
+  
+    h2 {
+      font-size: 25px;
+    }
+    .track-order-decision {
+      font-size: 15px;
+    }
+    .track-order-make-payment {
+      margin: 10px 400px;
+      padding: 10px 70px;
+    }
+  
+    .track-order-list,
+    .track-order-date,
+    .track-order-status,
+    .price-of-order {
+      font-size: 15px;
+      margin: 50px auto;
+    }
+  
+    .track-order-header-top {
+      margin: auto;
+    }
+    .caterer-button {
+      margin-left: 450px;
+    }
+    .input-section {
+      margin: auto;
+      width: 600px;
+    }
+    .list-section {
+      margin: 10px auto;
+      width: 600px;
+    }
+    .input-section label {
+      margin-left: -52%;
+    }
+  
+    .custom-delivery-date.deliveryDate {
+      margin-left: -59%;
+    }
+  }
+  
+  /********************/
+  /* BELOW 944px  (Tablets) */
+  /********************/
+  
+  @media (max-width: 974px) {
+    html {
+      font-size: 56.25%;
+    }
+    .logo {
+      height: 200px;
+    }
+  
+    .nav {
+      z-index: 999;
+    }
+    .nav-list-link.link1,
+    .nav-list-link.link2,
+    .nav-list-link.link3 {
+      font-size: 17px;
+    }
+  
+    .header {
+      padding: 0 30px;
+    }
+  
+    .welcome-section-list {
+      gap: 3.2rem;
+    }
+    .home-container {
+      gap: 4.8rem;
+    }
+    .welcome-page-heading {
+      font-size: 45px;
+    }
+    .btn-mobile-nav {
+      display: block;
+      z-index: 999;
+    }
+    .nav-div {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      transform: translateX(100%);
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease-in;
+  
+      /* Hide navigation */
+      /* allow no transistion at all */
+      /* display: none; */
+  
+      /* 1) hide it visually */
+      opacity: 0;
+  
+      /* 2) make it unacessable to mouse and keyboard */
+      pointer-events: none;
+  
+      /* 3) hide it from screen readers */
+      visibility: hidden;
+    }
+  
+    .nav-open .nav-div {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      transform: translateX(0%);
+    }
+    .nav-open .icon-mobile-nav[name="close-outline"] {
+      display: block;
+    }
+    .nav-open .icon-mobile-nav[name="menu-outline"] {
+      display: none;
+    }
+    .nav-list {
+      flex-direction: column;
+      gap: 4.8rem;
+    }
+  
+    .track-order-list-heading,
+    .track-order-heading,
+    .price-of-order-tag {
+      font-size: 25px;
+    }
+  
+    .track-order-list,
+    .track-order-date,
+    .price-of-order {
+      margin: 40px auto;
+    }
+    .track-order-list {
+      margin-top: 100px;
+      font-size: 20px;
+      margin-left: 250px;
+      padding: 50px 90px;
+      width: 550px;
+    }
+    .track-order-date {
+      font-size: 20px;
+      margin-left: 250px;
+      padding: 50px 90px;
+      width: 550px;
+    }
+  
+    .price-of-order {
+      font-size: 20px;
+      margin-left: 250px;
+      padding: 50px 90px;
+      width: 550px;
+    }
+  
+    .profile-container {
+      max-width: 500px;
+    }
+  
+    .profile-header {
+      font-size: 15px;
+    }
+    .caterer-button {
+      margin-left: 300px;
+    }
+    .container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .input-section {
+      text-align: center;
+      /* height: 350px; */
+      margin-left: 200px;
+      margin-top: 3dvb;
+      width: 300px;
+    }
+  
+    .list-section {
+      margin-left: 200px;
+      margin-top: 40px;
+      width: 420px;
+      padding: 20px;
+      /* margin-right: 80px; */
+    }
+    .list-section-header {
+      font-size: 25px;
+      margin-right: 50px;
+      padding-left: 50px;
+    }
+    .input-section {
+      margin: auto;
+      width: 550px;
+    }
+    .list-section {
+      margin: 20px auto;
+      width: 550px;
+    }
+    .input-section label {
+      margin-left: -49%;
+    }
+    .custom-page-submit {
+      margin: 25px 0px 20px 39%;
+    }
+    .custom-delivery-date.deliveryDate {
+      margin-left: -55%;
+    }
+  }
+  
+  /********************/
+  /* BELOW 704px  (Smaller tablets) */
+  /********************/
+  
+  @media (max-width: 704px) {
+    .logo {
+      height: 195px;
+    }
+    .welcome-page-heading {
+      font-size: 40px;
+      top: -5px;
+      line-height: 40px;
+    }
+    .welcome-section-list select {
+      top: -50px;
+      padding: 5px 40px;
+      font-size: 12px;
+    }
+    .track-order-list-heading,
+    .track-order-heading,
+    .price-of-order-tag {
+      font-size: 25px;
+    }
+  
+    .track-order-list,
+    .track-order-date,
+    .price-of-order {
+      margin: 40px auto;
+    }
+    .track-order-list {
+      margin-top: 200px;
+      font-size: 20px;
+      width: 500px;
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-date {
+      width: 500px;
+      font-size: 20px;
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .price-of-order {
+      width: 500px;
+      font-size: 20px;
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-make-payment {
+      margin-left: 350px;
+    }
+    .profile-container {
+      max-width: 450px;
+    }
+  
+    .profile-header {
+      font-size: 13px;
+    }
+  
+    .caterer-button {
+      margin-left: 200px;
+    }
+    .input-section {
+      text-align: center;
+      /* height: 350px; */
+      margin-left: 100px;
+      margin-top: 3dvb;
+      width: 420px;
+    }
+  
+    .list-section {
+      margin-left: 100px;
+      margin-top: 40px;
+      width: 420px;
+      padding: 20px;
+      /* margin-right: 80px; */
+    }
+    .list-section-header {
+      font-size: 25px;
+      margin-right: 50px;
+      padding-left: 50px;
+    }
+    .custom-delivery-date {
+      font-size: 15px;
+    }
+    .input-section {
+      margin: auto;
+      width: 450px;
+    }
+    .list-section {
+      margin: 10px auto;
+      width: 450px;
+    }
+    .input-section label {
+      margin-left: -44%;
+    }
+    .custom-page-submit {
+      margin: 25px 0px 20px 37%;
+    }
+    .custom-delivery-date.deliveryDate {
+      margin-left: -50%;
+    }
+  }
+  
+  /********************/
+  /* BELOW 544px  (phones) */
+  /********************/
+  @media (max-width: 544px) {
+    body {
+      width: 100%;
+      position: inherit;
+    }
+  
+    .logo {
+      height: 170px;
+    }
+    .container {
+      background-size: center;
+    }
+    .nav-div {
+      position: fixed;
+    }
+    .welcome-page-heading {
+      margin-left: 50px;
+      font-size: 37px;
+      top: -5px;
+      line-height: 40px;
+    }
+    .welcome-section-list select {
+      top: -50px;
+      padding: 5px 40px;
+      font-size: 12px;
+      margin-left: 50px;
+      margin-top: 120px;
+    }
+    .track-order-header-top {
+      width: 100%;
+    }
+    /* .track-order-list {
+      font-size: 20px;
+      margin: 50px;
+      margin-left: 300px;
+      padding: 50px 90px;
+    }
+    .track-order-date {
+      font-size: 20px;
+      margin: 50px;
+      margin-left: 300px;
+    }
+    .track-order-status {
+      margin: 50px;
+      margin-left: 300px;
+    }
+    .price-of-order {
+      padding: 10px;
+      margin: 50px;
+      margin-left: 200px;
+    } */
+    .profile-container {
+      max-width: 300px;
+    }
+  
+    .profile-header {
+      font-size: 13px;
+    }
+    .profile-info p {
+      font-size: 13px;
+      padding-bottom: 10px;
+    }
+    .custom-header {
+      font-size: 25px;
+    }
+    .caterer-button {
+      margin-left: 180px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    .input-section {
+      text-align: center;
+      /* height: 350px; */
+      margin-left: 85px;
+      margin-top: 3dvb;
+      width: 150px;
+    }
+  
+    .list-section {
+      margin-left: 85px;
+      margin-top: 40px;
+      width: 275px;
+      padding: 20px;
+      /* margin-right: 80px; */
+    }
+    .list-section-header {
+      font-size: 20px;
+      margin-right: 50px;
+      padding-left: 50px;
+    }
+    .custom-delivery-date {
+      font-size: 12px;
+    }
+    .input-section {
+      margin: auto;
+      width: 400px;
+    }
+    .list-section {
+      margin: 10px auto;
+      width: 400px;
+    }
+    .input-section label {
+      margin-left: -50%;
+    }
+    .custom-page-submit {
+      margin: 25px 0px 20px 35%;
+    }
+    .custom-delivery-date.deliveryDate {
+      margin-left: -55%;
+    }
+    .track-order-list-heading,
+    .track-order-heading,
+    .price-of-order-tag {
+      font-size: 29px;
+    }
+  
+    .track-order-list,
+    .track-order-date,
+    .price-of-order {
+      width: 450px;
+      margin: 40px auto;
+    }
+    .track-order-list {
+      margin-top: 250px;
+      font-size: 23px;
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-date {
+      font-size: 23px;
+  
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .price-of-order {
+      font-size: 23px;
+  
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-make-payment {
+      font-size: 23px;
+  
+      margin-left: 350px;
+    }
+  }
+  
+  /********************/
+  /* BELOW 420px  (phones) */
+  /********************/
+  @media (max-width: 420px) {
+    .caterer-button {
+      margin-left: 100px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    .input-section {
+      text-align: center;
+      /* height: 350px; */
+      margin-left: 10px;
+      margin-top: 3dvb;
+      width: 150px;
+    }
+    .input-section .btn {
+      font-size: 15px;
+    }
+    .list-section {
+      margin-left: 10px;
+      margin-top: 40px;
+      width: 270px;
+      padding: 20px;
+      /* margin-right: 80px; */
+    }
+    .list-section-header {
+      font-size: 20px;
+      margin-right: 50px;
+      padding-left: 50px;
+    }
+    /* .time-slot {
+      display: flex;
+      flex-direction: column;
+    } */
+    .custom-no-of-people-input {
+      font-size: 12px;
+      margin-left: 65px;
+      width: 250px;
+    }
+    /* .custom-input-date.deliveryDateInput {
+      width: 150px;
+      margin-left: 110px;
+    } */
+    .input-section {
+      margin: auto;
+      width: 380px;
+    }
+    .list-section {
+      margin: 10px auto;
+      width: 380px;
+    }
+    .input-section label {
+      margin-left: -50%;
+    }
+    .custom-page-submit {
+      margin: 25px 0px 20px 32%;
+    }
+  
+    .custom-delivery-date.deliveryDate {
+      margin-left: -55%;
+    }
+    .track-order-list-heading,
+    .track-order-heading,
+    .price-of-order-tag {
+      font-size: 29px;
+    }
+  
+    .track-order-list,
+    .track-order-date,
+    .price-of-order {
+      width: 500px;
+      margin: 40px auto;
+    }
+    .track-order-list {
+      margin-top: 250px;
+      font-size: 23px;
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-date {
+      font-size: 23px;
+  
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .price-of-order {
+      font-size: 23px;
+  
+      margin-left: 250px;
+      padding: 50px 90px;
+    }
+    .track-order-make-payment {
+      font-size: 23px;
+  
+      margin-left: 350px;
+    }
+  }
+  
+  /********************/
+  /* BELOW 375px  (phones) */
+  /********************/
+  
+  @media (max-width: 375px) {
+    .custom-header {
+      font-size: 20px;
+    }
+    .caterer-button {
+      margin-left: 100px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    .input-section {
+      text-align: center;
+      /* height: 350px; */
+      margin-left: 10px;
+      margin-top: 3dvb;
+      width: 150px;
+    }
+    .input-section .btn {
+      font-size: 15px;
+    }
+    .list-section {
+      margin-left: 10px;
+      margin-top: 40px;
+      width: 270px;
+      padding: 20px;
+      /* margin-right: 80px; */
+    }
+    .list-section-header {
+      font-size: 20px;
+      margin-right: 50px;
+      padding-left: 50px;
+    }
+    .time-slot {
+      display: flex;
+      flex-direction: column;
+    }
+    .custom-no-of-people-input {
+      font-size: 12px;
+    }
+  
+    .input-section {
+      margin: 10px auto;
+      width: 330px;
+    }
+    .list-section {
+      margin: 10px auto;
+      width: 330px;
+    }
+    .input-section label {
+      margin-left: -35%;
+    }
+  
+    .custom-delivery-date.deliveryDate {
+      margin-left: -45%;
+    }
+  }
+  

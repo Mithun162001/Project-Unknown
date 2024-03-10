@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Delicious Bangalore is an AI-powered food subscription that will make you eat healthy again, 365 days per year. It's tailored to your personal tastes and nutritional needs"
+    />
+
+    <link rel="icon" href="img/favicon copy.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <title>Explore caterer</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/customer-service-general.css" />
+    <link rel="stylesheet" href="/css/customer-service-style.css" />
+    <link rel="stylesheet" href="/css/customer-service-queries.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#">
+        <img class="logo" src="/img/logo.png" alt="Cloudkitchen logo "
+      /></a>
+    </header>
+
+    <main>
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero-text-box">
+            <h1 class="heading-primary">Crafting Culinary Delights</h1>
+            <p class="hero-description">
+              From exquisite flavors to impeccable service, we elevate your
+              occasions with the perfect blend of taste and elegance.
+            </p>
+            <a href="makeorder" class="btn btn--left margin-right-sm"
+              >Make Order</a
+            >
+
+            <div class="delivered-meals">
+              <div class="delivered-imgs">
+                <p class="delivered-text">
+                  <span>250,000+</span> meals delivered last year!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-img-box">
+            <picture>
+              <!-- <source srcset="img/hero.webp" type="image/webp" />
+              <source srcset="img/hero-min.png" type="image/png" /> -->
+
+              <!-- <img
+                src="img/hero-min.png"
+                class="hero-img"
+                alt="Woman enjoying food, meals in storage container, food bowls on a table "
+                /> -->
+              <img
+                src="/img/hero.png"
+                class="hero-img"
+                alt="Woman enjoying food, meals in storage container, food bowls on a table "
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-meals" id="meals">
+        <div class="container center-text">
+          <span class="sub-heading">Meals</span>
+          <h2 class="heading-secondary">
+            Culinary artisans orchestrating unforgettable feasts
+          </h2>
+        </div>
+        <div class="container grid grid--3-cols margin-bottom-md">
+          <div class="meal">
+            <img
+              src="/img/meal-1.jpg"
+              class="meal-img"
+              alt="Japanese Gyoras"
+            />
+            <div class="meal-content">
+              <p class="meal-title">South Indian</p>
+            </div>
+          </div>
+
+          <div class="meal">
+            <img
+              src="/img/meal-2.jpg"
+              class="meal-img"
+              alt="Japanese Gyoras"
+            />
+            <div class="meal-content">
+              <p class="meal-title">North Indian</p>
+            </div>
+          </div>
+
+          <div class="diets">
+            <h3 class="heading-tertiary">Works with any diet</h3>
+            <ul class="list">
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Vegetarian</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>non-vegeterian</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Pescatarian</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Gluten-free</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Lactose-free</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Keto</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Paleo</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Low FODMAP</span>
+              </li>
+              <li class="list-item">
+                <ion-icon class="list-icon" name="checkmark-outline"></ion-icon
+                ><span>Kid-friendly</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="container grid grid--4-cols">
+        <div class="feature">
+          <ion-icon class="feature-icon" name="infinite-outline"></ion-icon>
+          <p class="feature-title">Healthy & Tasty!</p>
+          <p class="feature-text">
+            Our subscriptions cover 365 days per year, even including major
+            holidays.
+          </p>
+        </div>
+        <div class="feature">
+          <ion-icon class="feature-icon" name="nutrition-outline"></ion-icon>
+          <p class="feature-title">Quality and Hygiene</p>
+          <p class="feature-text">
+            Our cooks only use local, fresh, and organic products to prepare
+            your meals.
+          </p>
+        </div>
+        <div class="feature">
+          <ion-icon class="feature-icon" name="leaf-outline"></ion-icon>
+          <p class="feature-title">Local and organic</p>
+          <p class="feature-text">
+            All our partners only use reusable containers to package all your
+            meals.
+          </p>
+        </div>
+        <div class="feature">
+          <ion-icon class="feature-icon" name="pause-outline"></ion-icon>
+          <p class="feature-title">Eco-Freindly</p>
+          <p class="feature-text">
+            All our partners only use reusable containers to package all your
+            meals.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-testimonials" id="testimonials">
+        <div class="testimonials-container">
+          <span class="sub-heading">Testimonial</span>
+          <h2 class="heading-secondary">Once you try it, you can't go back</h2>
+
+          <div class="testimonials">
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="img/customers/dave.jpg"
+                alt="dave customer"
+              />
+              <blockquote class="testimonial-text">
+                Inexpensive, healthy and great-tasting meals, had a great
+                experience and service.
+              </blockquote>
+              <p class="testimonial-name">&mdash; Dave Bryson</p>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="img/customers/ben.jpg"
+                alt="ben customer"
+              />
+              <blockquote class="testimonial-text">
+                Exquisite catering, impeccable service. Highly recommend!
+              </blockquote>
+              <p class="testimonial-name">&mdash; Ben Hadley</p>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="img/customers/steve.jpg"
+                alt="dave customer"
+              />
+              <blockquote class="testimonial-text">
+                From the delectable dishes to the impeccable presentation, every
+                detail was meticulously executed, making our event truly
+                unforgettable.
+              </blockquote>
+              <p class="testimonial-name">&mdash; Steve Miller</p>
+            </figure>
+            <figure class="testimonial">
+              <img
+                class="testimonial-img"
+                src="img/customers/hannah.jpg"
+                alt="dave customer"
+              />
+              <blockquote class="testimonial-text">
+                Exceptional catering, delightful flavors, impeccable service.
+                Couldn't ask for more. Highly recommend for any event!
+              </blockquote>
+              <p class="testimonial-name">&mdash; Hannah Smith</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <figure class="gallery-item">
+            <img src="/img/gallery-1.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-2.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-3.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-4.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-5.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-6.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-7.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-8.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-9.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-10.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-11.jpg" alt="Photo from gallery" />
+          </figure>
+          <figure class="gallery-item">
+            <img src="/img/gallery-12.jpg" alt="Photo from gallery" />
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img class="logo-1" src="/img/logo.png" alt="delicious logo "
+          /></a>
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="#">
+                <ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+
+          <p class="copyright">
+            Copyright &copy; <span class="year">2024</span> Cloud Kitchen, Inc.
+            <br />All rights are reserved.<br />
+          </p>
+        </div>
+        <div class="address-col">
+          <p class="footer-heading">Contact us</p>
+          <address class="contacts">
+            <p class="address">Bangalore, India 560091</p>
+            <p>
+              <a class="footer-link" href="tel:999-999-9999">999-999-9999</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@deliciousblr.com"
+                >hello@cloudkitchen.com</a
+              ><br />
+            </p>
+          </address>
+        </div>
+        <div class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Create account</a></li>
+            <li><a class="footer-link" href="#">Sign in</a></li>
+            <!-- <li><a class="footer-link" href="#">iOS app</a></li>
+            <li><a class="footer-link" href="#">Android app</a></li> -->
+          </ul>
+        </div>
+        <div class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">About Cloud Kitchen</a></li>
+            <li><a class="footer-link" href="#">For Business</a></li>
+            <li><a class="footer-link" href="#">Cooking partners</a></li>
+            <!-- <li><a class="footer-link" href="#">Careers</a></li> -->
+          </ul>
+        </div>
+        <div class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="#">Recipe directory</a></li>
+            <li><a class="footer-link" href="#">Help center</a></li>
+            <li><a class="footer-link" href="#">Privacy & terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- <script src="js/deliciousblr.js"></script> -->
+  </body>
+</html>
