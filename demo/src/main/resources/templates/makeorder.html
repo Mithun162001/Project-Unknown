@@ -7,7 +7,8 @@
 </head>
 <body>
     <h2>Make Order</h2>
-    <form th:action="@{/saveOrder}" method="post">
+    <!-- Ensure the form action is set to call your saveOrder method in the controller -->
+    <form action="#" th:action="@{/saveOrder}" th:object="${order}" method="post">
         <div>
             <label for="dishName">Dish Name:</label>
             <input type="text" id="dishName" name="dishName" required>
@@ -22,7 +23,7 @@
         </div>
         <div>
             <label for="caterer">Select Caterer:</label>
-            <select id="caterer" name="caterer" required>
+            <select id="caterer" name="caterer.id" required> <!-- Note the change here to caterer.id -->
                 <option value="">Select Caterer</option>
                 <option th:each="caterer : ${catererList}" th:value="${caterer.id}" th:text="${caterer.fullName}"></option>
             </select>
@@ -31,4 +32,3 @@
     </form>
 </body>
 </html>
-

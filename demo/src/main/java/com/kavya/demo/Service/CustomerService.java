@@ -20,6 +20,12 @@ public class CustomerService {
         return customer != null && customer.getPassword().equals(password);
     }
 
+    public Customer authenticateUser(String fullName, String password) {
+        // Directly finding user by username and password for demonstration
+        // In production, use password hashing and Spring Security
+        return customerRepository.findByFullNameAndPassword(fullName, password);
+    }
+
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }

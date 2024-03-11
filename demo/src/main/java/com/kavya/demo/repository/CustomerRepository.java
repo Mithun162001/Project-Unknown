@@ -6,4 +6,5 @@ import com.kavya.demo.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer,Long>{
     Customer findByFullName(String FullName);
+    Customer findByFullNameAndPassword(String fullName, String password);
 }

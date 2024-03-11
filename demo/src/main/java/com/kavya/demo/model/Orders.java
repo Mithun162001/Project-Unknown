@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
 import java.time.LocalDate;
 
 @Entity
@@ -23,11 +22,11 @@ public class Orders {
     private int numberOfPeople;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Customer user; // Many-to-one relationship with User entity
+    @JoinColumn(name = "user_id", nullable = false)
+    private Customer user; // Many-to-one relationship with the Customer entity
 
     @ManyToOne
-    @JoinColumn(name = "caterer_id")
+    @JoinColumn(name = "caterer_id", nullable = false)
     private Caterer caterer;
 
     private double price;
@@ -73,7 +72,6 @@ public class Orders {
         return user;
     }
 
-    
     public void setUser(Customer user) {
         this.user = user;
     }
