@@ -82,7 +82,7 @@
       <div class="text-center mb-4">
         <h2 class="animated-text">Join Cloud Kitchen as a Caterer</h2>
       </div>
-      <form th:action="@{/caterer/signup}" method="post" th:object="${caterer}">
+      <form th:action="@{/catererSignup}" method="post" th:object="${caterer}">
         <div class="form-group">
           <label for="fullName">Full Name:</label>
           <input
@@ -95,16 +95,9 @@
           />
         </div>
         <div class="form-group">
-          <label for="phoneNumber">Phone Number:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="phoneNumber"
-            th:field="*{phoneNumber}"
-            placeholder="Phone Number"
-            required
-          />
-        </div>
+          <label for="Phonenumber" class="label-text">Phone Number:</label>
+          <input type="text" class="form-control" id="Phonenumber" th:field="*{Phonenumber}" placeholder="Phone Number" required />
+      </div>
         <div class="form-group">
           <label for="address">Address:</label>
           <input
@@ -141,7 +134,7 @@
         <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
       </form>
       <p class="signup-link">
-        Already have an account? <a href="/caterer_login">Login</a>
+        Already have an account? <a href="caterer_login">Login</a>
       </p>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -1,48 +1,73 @@
 package com.kavya.demo.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import com.kavya.demo.model.Caterer;
 import com.kavya.demo.Service.CatererService;
+import com.kavya.demo.model.Caterer;
 
-@RestController
-@RequestMapping("/caterers")
+import jakarta.servlet.http.HttpSession;
+
+@Controller
 public class CatererController {
+
     @Autowired
-    private CatererService userService;
+    private CatererService catererService;
 
-    @GetMapping()
-    public List<Caterer> getAllCaterers() {
-        return userService.getAllCaterers();
+    @PostMapping("/catererSignup")
+    public String createCaterer(@ModelAttribute("caterer") Caterer caterer, Model model) {
+        // Create the caterer using the service method
+        catererService.createCaterer(caterer);
+        
+        // Add success message
+        String registrationSuccessMessage = "Caterer registration successful. Please login.";
+        model.addAttribute("successMessage", registrationSuccessMessage);
+        
+        // Redirect to the login page
+        return "caterer_login";
+    }
+    
+    @GetMapping("/catererSignup")
+public String showCatererSignupForm(Model model) {
+    model.addAttribute("caterer", new Caterer());
+    return "caterer_signup";
+}
+
+    @GetMapping("/catererLogin")
+    public String showLoginForm() {
+        return "caterer_login";
     }
 
-    @GetMapping("/{id}")
-    public Caterer getCatererById(@PathVariable Long id) {
-        return userService.getCatererById(id);
+    @PostMapping("/catererLogin")
+    public String login(@RequestParam String FullName, @RequestParam String password, HttpSession session, Model model) {
+        if (catererService.isValidCaterer(FullName, password)) {
+            session.setAttribute("userId", FullName);
+            return "customer_welcome";
+        } else {
+            String loginFailed = "invalid credentials";
+            model.addAttribute("errorMessage", loginFailed);
+            return "caterer_login";
+        }
     }
 
-    @PostMapping()
-    public Caterer createCaterer(@RequestBody Caterer user) {
-        return userService.createCaterer(user);
-    }
+    // @GetMapping("/caterers/{id}")
+    // public String getCatererById(@PathVariable Long id, Model model) {
+    //     Caterer caterer = catererService.getCatererById(id);
+    //     model.addAttribute("caterer", caterer);
+    //     return "caterer_details"; // assuming you have a view named caterer_details to display caterer details
+    // }
 
-    @PutMapping("/{id}")
-    public Caterer updateCaterer(@PathVariable Long id, @RequestBody Caterer user) {
-        return userService.updateCaterer(id, user);
-    }
+    // @PutMapping("/caterers/{id}")
+    // public String updateCaterer(@PathVariable Long id, @ModelAttribute("user") Caterer user, Model model) {
+    //     // Update caterer logic
+    //     return "redirect:/caterers/" + id; // Redirect to the caterer details page
+    // }
 
-    @DeleteMapping("/{id}")
-    public void deleteCaterer(@PathVariable Long id) {
-        userService.deleteCaterer(id);
-    }
+    // @DeleteMapping("/caterers/{id}")
+    // public String deleteCaterer(@PathVariable Long id) {
+    //     // Delete caterer logic
+    //     return "redirect:/"; // Redirect to home or any other appropriate page
+    // }
 }

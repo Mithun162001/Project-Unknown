@@ -17,12 +17,18 @@ public class CatererService {
         return catererRepository.findAll();
     }
 
-    @SuppressWarnings("null")
+    public boolean isValidCaterer(String FullName, String password) {
+        // Retrieve caterer from the database using the provided username
+        Caterer caterer = catererRepository.findByFullName(FullName);
+        // Check if a caterer with the provided username exists and if the password matches
+        return caterer != null && caterer.getPassword().equals(password);
+    }
+    
+
     public Caterer getCatererById(Long id) {
         return catererRepository.findById(id).orElse(null);
     }
 
-    @SuppressWarnings("null")
     public Caterer createCaterer(Caterer user) {
         return catererRepository.save(user);
     }

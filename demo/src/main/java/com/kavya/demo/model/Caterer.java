@@ -1,15 +1,10 @@
 package com.kavya.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Caterer {
@@ -17,15 +12,15 @@ public class Caterer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String FullName;
+    private String fullName;
     @Column(unique = true)
     private String Email;
     private String Address;
     private String Phonenumber;
     private String Password;
 
-    @OneToMany(mappedBy = "caterer", cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
+    // @OneToMany(mappedBy = "caterer", cascade = CascadeType.ALL)
+    // private List<Order> orders = new ArrayList<>();
 
     // @OneToMany(mappedBy = "caterer")
     // private List<AccountDetails> paymentDetails;
@@ -37,7 +32,7 @@ public class Caterer {
 
     public Caterer(Long id, String fullName, String email, String address, String phonenumber, String password) {
         this.id = id;
-        FullName = fullName;
+        this.fullName = fullName;
         Email = email;
         Address = address;
         Phonenumber = phonenumber;
@@ -53,11 +48,11 @@ public class Caterer {
     }
 
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
 
     public void setFullName(String fullName) {
-        FullName = fullName;
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -94,7 +89,7 @@ public class Caterer {
 
     @Override
     public String toString() {
-        return "Caterer [id=" + id + ", FullName=" + FullName + ", Email=" + Email + ", Address=" + Address
+        return "Caterer [id=" + id + ", FullName=" + fullName + ", Email=" + Email + ", Address=" + Address
                 + ", Phonenumber=" + Phonenumber + ", Password=" + Password + "]";
     }
 
