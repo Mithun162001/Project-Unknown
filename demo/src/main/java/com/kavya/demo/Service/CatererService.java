@@ -17,12 +17,11 @@ public class CatererService {
         return catererRepository.findAll();
     }
 
-    public boolean isValidCaterer(String FullName, String password) {
-        // Retrieve caterer from the database using the provided username
-        Caterer caterer = catererRepository.findByFullName(FullName);
-        // Check if a caterer with the provided username exists and if the password matches
+    public boolean isValidCaterer(String email, String password) {
+        Caterer caterer = catererRepository.findByEmail(email);
         return caterer != null && caterer.getPassword().equals(password);
     }
+    
     
 
     public Caterer getCatererById(Long id) {

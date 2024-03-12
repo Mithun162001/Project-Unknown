@@ -1,12 +1,12 @@
 package com.kavya.demo.model;
 
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
 
 @Entity
 public class Orders {
@@ -22,14 +22,12 @@ public class Orders {
     private int numberOfPeople;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Customer user; // Many-to-one relationship with the Customer entity
+    @JoinColumn(name = "user_id")
+    private Customer user; // Many-to-one relationship with User entity
 
     @ManyToOne
-    @JoinColumn(name = "caterer_id", nullable = false)
+    @JoinColumn(name = "caterer_id")
     private Caterer caterer;
-
-    private double price;
 
     // Constructors
     public Orders() {
@@ -82,13 +80,5 @@ public class Orders {
 
     public void setCaterer(Caterer caterer) {
         this.caterer = caterer;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }

@@ -23,10 +23,16 @@
         </div>
         <div>
             <label for="caterer">Select Caterer:</label>
-            <select id="caterer" name="caterer.id" required> <!-- Note the change here to caterer.id -->
+            <select name="catererId">
                 <option value="">Select Caterer</option>
-                <option th:each="caterer : ${catererList}" th:value="${caterer.id}" th:text="${caterer.fullName}"></option>
+                <!-- Iterate over the list of caterers fetched from the backend -->
+                <th:block th:each="caterer : ${catererList}">
+                    <!-- Display both ID and name, but set the value of the option to the ID -->
+                    <option th:value="${caterer.id}" th:text="${caterer.id + ' - ' + caterer.fullName}"></option>
+                </th:block>
             </select>
+            
+            
         </div>
         <button type="submit">Submit</button>
     </form>

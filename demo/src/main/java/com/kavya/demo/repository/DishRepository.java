@@ -3,10 +3,10 @@ package com.kavya.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.kavya.demo.model.Caterer;
+import com.kavya.demo.model.Dish;
+
+
 
 @Repository
-public interface CatererRepository extends JpaRepository<Caterer, Long>{
-    Caterer findByEmail(String email);
+public interface DishRepository extends JpaRepository<Dish, Long> {
 }
-

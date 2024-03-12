@@ -14,7 +14,7 @@ public class Caterer {
     private Long id;
     private String fullName;
     @Column(unique = true)
-    private String Email;
+    private String email;
     private String Address;
     private String Phonenumber;
     private String Password;
@@ -33,7 +33,7 @@ public class Caterer {
     public Caterer(Long id, String fullName, String email, String address, String phonenumber, String password) {
         this.id = id;
         this.fullName = fullName;
-        Email = email;
+        this.email = email;
         Address = address;
         Phonenumber = phonenumber;
         Password = password;
@@ -56,11 +56,11 @@ public class Caterer {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getAddress() {
@@ -89,7 +89,7 @@ public class Caterer {
 
     @Override
     public String toString() {
-        return "Caterer [id=" + id + ", FullName=" + fullName + ", Email=" + Email + ", Address=" + Address
+        return "Caterer [id=" + id + ", FullName=" + fullName + ", Email=" + email + ", Address=" + Address
                 + ", Phonenumber=" + Phonenumber + ", Password=" + Password + "]";
     }
 

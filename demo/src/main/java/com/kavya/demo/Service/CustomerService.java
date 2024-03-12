@@ -13,18 +13,13 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
 
-    public boolean isValidUser(String fullName, String password) {
-        // Retrieve user from the database using the provided full name
-        Customer customer = customerRepository.findByFullName(fullName);
-        // Check if a user with the provided full name exists and if the password matches
+    public boolean isValidUser(String email, String password) {
+        // Retrieve user from the database using the provided email
+        Customer customer = customerRepository.findByEmail(email);
+        // Check if a user with the provided email exists and if the password matches
         return customer != null && customer.getPassword().equals(password);
     }
-
-    public Customer authenticateUser(String fullName, String password) {
-        // Directly finding user by username and password for demonstration
-        // In production, use password hashing and Spring Security
-        return customerRepository.findByFullNameAndPassword(fullName, password);
-    }
+    
 
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
@@ -39,6 +34,11 @@ public class CustomerService {
     public Customer createCustomer(Customer user) {
         return customerRepository.save(user);
     }
+
+    public Customer getUserByEmail(String email) {
+        return customerRepository.findByEmail(email);
+    }
+
 
     @SuppressWarnings("null")
     public Customer updateCustomer(Long id, Customer user) {

@@ -41,16 +41,17 @@ public String showCatererSignupForm(Model model) {
     }
 
     @PostMapping("/catererLogin")
-    public String login(@RequestParam String FullName, @RequestParam String password, HttpSession session, Model model) {
-        if (catererService.isValidCaterer(FullName, password)) {
-            session.setAttribute("userId", FullName);
+    public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
+        if (catererService.isValidCaterer(email, password)) {
+            session.setAttribute("userId", email);
             return "customer_welcome";
         } else {
-            String loginFailed = "invalid credentials";
+            String loginFailed = "Invalid credentials";
             model.addAttribute("errorMessage", loginFailed);
             return "caterer_login";
         }
     }
+    
 
     // @GetMapping("/caterers/{id}")
     // public String getCatererById(@PathVariable Long id, Model model) {

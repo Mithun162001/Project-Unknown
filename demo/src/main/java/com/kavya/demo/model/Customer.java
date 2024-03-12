@@ -14,7 +14,7 @@ public class Customer {
     private Long id;
     private String fullName;
     @Column(unique = true)
-    private String Email;
+    private String email;
     private String Address;
     private String Phonenumber;
     private String Password;
@@ -36,7 +36,7 @@ public class Customer {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
-        result = prime * result + ((Email == null) ? 0 : Email.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((Address == null) ? 0 : Address.hashCode());
         result = prime * result + ((Phonenumber == null) ? 0 : Phonenumber.hashCode());
         result = prime * result + ((Password == null) ? 0 : Password.hashCode());
@@ -63,10 +63,10 @@ public class Customer {
                 return false;
         } else if (!fullName.equals(other.fullName))
             return false;
-        if (Email == null) {
-            if (other.Email != null)
+        if (email == null) {
+            if (other.email != null)
                 return false;
-        } else if (!Email.equals(other.Email))
+        } else if (!email.equals(other.email))
             return false;
         if (Address == null) {
             if (other.Address != null)
@@ -89,7 +89,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer [id=" + id + ", FullName=" + fullName + ", Email=" + Email + ", Address=" + Address
+        return "Customer [id=" + id + ", FullName=" + fullName + ", Email=" + email + ", Address=" + Address
                 + ", Phonenumber=" + Phonenumber + ", Password=" + Password + "]";
     }
 
@@ -115,12 +115,12 @@ public class Customer {
 
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
 
@@ -157,7 +157,7 @@ public class Customer {
     public Customer(Long id, String fullName, String email, String address, String phonenumber, String password) {
         this.id = id;
         this.fullName = fullName;
-        Email = email;
+        this.email = email;
         Address = address;
         Phonenumber = phonenumber;
         Password = password;

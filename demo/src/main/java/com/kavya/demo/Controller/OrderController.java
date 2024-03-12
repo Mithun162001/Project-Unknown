@@ -3,18 +3,19 @@ package com.kavya.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-
-import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.*;
 
 import com.kavya.demo.Service.CatererService;
+import com.kavya.demo.Service.CustomerService;
+import com.kavya.demo.Service.DishService;
 import com.kavya.demo.Service.OrderService;
 import com.kavya.demo.model.Caterer;
 import com.kavya.demo.model.Customer;
+import com.kavya.demo.model.Dish;
 import com.kavya.demo.model.Orders;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -27,46 +28,89 @@ public class OrderController {
     @Autowired
     private CatererService catererService;
 
-    /**
-     * Displays the order form to the user, ensuring they are logged in.
-     * If the user is not logged in, redirects to the login page.
-     *
-     * @param model the Spring model to pass data to the view
-     * @param session the HTTP session for checking user login
-     * @return the name of the template to render
-     */
-   @GetMapping("/makeOrder")
-public String showOrderForm(Model model, @SessionAttribute("user") Customer user) {
-    List<Caterer> catererList = catererService.getAllCaterers();
-    model.addAttribute("catererList", catererList);
-    model.addAttribute("order", new Orders());
-    return "makeorder";
-}
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private DishService dishService;
+
+    
 
 
-    /**
-     * Processes the submitted order form, saving the order to the database.
-     * Requires the user to be logged in.
-     *
-     * @param order the order data bound from the form submission
-     * @param session the HTTP session for retrieving the logged-in user
-     * @return a redirect string to the next view
-     */
-    @PostMapping("/saveOrder")
-    public String saveOrder(@ModelAttribute("order") Orders order, HttpSession session) {
-        // Ensure the user is logged in
-        Customer user = (Customer) session.getAttribute("user");
-        if (user == null) {
-            // Redirect to login page if user not in session
+    @GetMapping("/makeOrder")
+    public String showOrderForm(Model model, HttpServletRequest request) {
+        // Get the logged-in user ID from the session
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("userId") == null) {
+            // Redirect to the login page if user is not logged in
             return "redirect:/login";
         }
+        session.getAttribute("userId");
 
-        order.setUser(user);
+        // Fetch the caterer list from the database
+        List<Caterer> catererList = catererService.getAllCaterers();
 
-        // The saveOrder method in OrderService already calculates the price
-        orderService.saveOrder(order);
+        // Add the caterer list to the model
+        model.addAttribute("catererList", catererList);
 
-        // Redirect to a confirmation or tracking page (assuming you have one)
-        return "redirect:/trackOrder";
+        // Add a new Order object to the model
+        model.addAttribute("order", new Orders());
+
+        return "makeorder";
     }
+
+    // @GetMapping("/trackOrder")
+    // public String showLoginForm() {
+    //     return "trackorder";
+    // }
+
+
+    @PostMapping("/saveOrder")
+    public String saveOrder(@ModelAttribute("order") Orders order, HttpSession session, @RequestParam Long catererId) {
+        // Get the logged-in user's email from the session
+        String userEmail = (String) session.getAttribute("userId");
+        if (userEmail == null) {
+            // Redirect to the login page if user is not logged in
+            return "redirect:/login";
+        }
+    
+        // Retrieve the logged-in user based on their email
+        Customer user = customerService.getUserByEmail(userEmail);
+        if (user == null) {
+            // Handle scenario where user is not found
+            return "error";
+        }
+    
+        // Set the user on the order
+        order.setUser(user);
+    
+        // Fetch the caterer based on catererId
+        Caterer caterer = catererService.getCatererById(catererId);
+        if (caterer == null) {
+            // Handle caterer not found scenario
+            return "error";
+        }
+    
+        // Set the caterer on the order
+        order.setCaterer(caterer);
+    
+        // Save the order
+        orderService.saveOrder(order);
+    
+        // Process dish names and save them as separate entries
+        String[] dishNames = order.getDishName().split(",");
+        for (String dishName : dishNames) {
+            Dish dish = new Dish();
+            dish.setDishName(dishName.trim()); // Trim to remove any leading or trailing whitespaces
+            dish.setOrder(order); // Set the order for the dish
+            // Save the dish using the dish service
+            dishService.saveDish(dish);
+        }
+    
+        // Redirect to the track order page
+        return "trackOrder";
+    }
+    
+
+    
 }

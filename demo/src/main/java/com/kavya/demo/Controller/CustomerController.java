@@ -5,10 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import com.kavya.demo.model.Customer;
 import com.kavya.demo.Service.CustomerService;
+
 import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
+
 
 @Controller
 public class CustomerController {
@@ -16,65 +20,85 @@ public class CustomerController {
     @Autowired
     private CustomerService userService;
 
+    
+
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
         model.addAttribute("customer", new Customer());
         return "signup";
     }
-
+    
     @PostMapping("/signup")
     public String createCustomer(@ModelAttribute Customer customer, Model model) {
         userService.createCustomer(customer);
-        model.addAttribute("successMessage", "Registration successful. Please login.");
+        String registrationSuccessMessage = "Registration successful. Please login.";
+        model.addAttribute("successMessage", registrationSuccessMessage);
         return "login";
     }
+    
+    // @GetMapping("/")
+    // public String showLoginForm2() {
+    //     return "login";
+    // }
 
     @GetMapping("/login")
     public String showLoginForm() {
         return "login";
     }
 
-    // Separate API-like login handling
     @PostMapping("/login")
-    public String login(@RequestParam String fullName, @RequestParam String password, HttpSession session, Model model) {
-        Customer user = userService.authenticateUser(fullName, password);
-        if (user != null) {
-            session.setAttribute("user", user);
-            return "redirect:/customer_welcome";
-        } else {
-            model.addAttribute("errorMessage", "Invalid credentials");
-            return "login";
-        }
+public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
+    // Check if the email and password are valid
+    if (userService.isValidUser(email, password)) {
+        // Store user ID in session
+        session.setAttribute("userId", email);
+        // Redirect to the home page or any other page
+        return "customer_welcome";
+    } else {
+        String loginFailed = "Invalid credentials";
+        model.addAttribute("errorMessage", loginFailed);
+        return "login";
     }
-    
+}
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
+        // Invalidate session and logout
         session.invalidate();
         return "redirect:/login";
     }
 
-    @GetMapping("/customer_service")
+   @GetMapping("/customer_service")
     public String goToCustomerServicePage() {
         return "customer_service";
     }
+    
 
-    // Assuming below endpoints are part of an API, consider moving to @RestController
-    @GetMapping("/customersinfo")
+   @GetMapping("/customersinfo")
     public ResponseEntity<List<Customer>> getAllCustomers() {
-        return ResponseEntity.ok(userService.getAllCustomers());
+        List<Customer> customers = userService.getAllCustomers();
+        return ResponseEntity.ok().body(customers);
     }
 
     @GetMapping("/customerinfo/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
         Customer customer = userService.getCustomerById(id);
-        return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build();
+        if (customer != null) {
+            return ResponseEntity.ok().body(customer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/updatecustomer/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        Customer updatedCustomer = userService.updateCustomer(id, customer);
-        return updatedCustomer != null ? ResponseEntity.ok(updatedCustomer) : ResponseEntity.notFound().build();
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer user) {
+        Customer updatedCustomer = userService.updateCustomer(id, user);
+        if (updatedCustomer != null) {
+            return ResponseEntity.ok().body(updatedCustomer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/deletecustomer/{id}")
@@ -82,4 +106,5 @@ public class CustomerController {
         userService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
+
 }
