@@ -57,6 +57,7 @@
         padding: 12px;
         width: 100%;
         font-size: 16px;
+        color: white;
       }
       .btn-primary:hover {
         background-color: #0056b3;
@@ -72,6 +73,10 @@
       a:hover {
         text-decoration: underline;
       }
+
+      .Login-Word{
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -79,7 +84,7 @@
       <div class="text-center mb-4">
         <h2 class="animated-text">Caterer Login to Cloud Kitchen</h2>
       </div>
-      <form th:action="@{/caterer/login}" method="post">
+      <form th:action="@{/catererLogin}" method="post">
         <div class="form-group">
           <input
             type="text"
@@ -99,7 +104,9 @@
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-primary btn-block"><a href="/catererWelcome">
+          <span class="Login-Word">Login</span>
+        </a></button>
       </form>
       <p class="signup-link">
         Don't have an account? <a href="/catererSignup">Sign up</a>

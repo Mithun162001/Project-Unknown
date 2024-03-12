@@ -40,11 +40,18 @@ public String showCatererSignupForm(Model model) {
         return "caterer_login";
     }
 
+
+    @GetMapping("/catererWelcome")
+    public String showLoginForm2() {
+        return "caterer_welcome";
+    }
+
+
     @PostMapping("/catererLogin")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         if (catererService.isValidCaterer(email, password)) {
             session.setAttribute("userId", email);
-            return "customer_welcome";
+            return "caterer_welcome";
         } else {
             String loginFailed = "Invalid credentials";
             model.addAttribute("errorMessage", loginFailed);

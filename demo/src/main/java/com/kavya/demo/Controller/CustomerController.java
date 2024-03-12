@@ -1,7 +1,6 @@
 package com.kavya.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,6 @@ import com.kavya.demo.model.Customer;
 import com.kavya.demo.Service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
-
-import java.util.List;
 
 
 @Controller
@@ -69,42 +66,42 @@ public String login(@RequestParam String email, @RequestParam String password, H
         return "redirect:/login";
     }
 
-   @GetMapping("/customer_service")
-    public String goToCustomerServicePage() {
-        return "customer_service";
-    }
+//    @GetMapping("/customer_service")
+//     public String goToCustomerServicePage() {
+//         return "customer_service";
+//     }
     
 
-   @GetMapping("/customersinfo")
-    public ResponseEntity<List<Customer>> getAllCustomers() {
-        List<Customer> customers = userService.getAllCustomers();
-        return ResponseEntity.ok().body(customers);
-    }
+//    @GetMapping("/customersinfo")
+//     public ResponseEntity<List<Customer>> getAllCustomers() {
+//         List<Customer> customers = userService.getAllCustomers();
+//         return ResponseEntity.ok().body(customers);
+//     }
 
-    @GetMapping("/customerinfo/{id}")
-    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
-        Customer customer = userService.getCustomerById(id);
-        if (customer != null) {
-            return ResponseEntity.ok().body(customer);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//     @GetMapping("/customerinfo/{id}")
+//     public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
+//         Customer customer = userService.getCustomerById(id);
+//         if (customer != null) {
+//             return ResponseEntity.ok().body(customer);
+//         } else {
+//             return ResponseEntity.notFound().build();
+//         }
+//     }
 
-    @PutMapping("/updatecustomer/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer user) {
-        Customer updatedCustomer = userService.updateCustomer(id, user);
-        if (updatedCustomer != null) {
-            return ResponseEntity.ok().body(updatedCustomer);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//     @PutMapping("/updatecustomer/{id}")
+//     public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer user) {
+//         Customer updatedCustomer = userService.updateCustomer(id, user);
+//         if (updatedCustomer != null) {
+//             return ResponseEntity.ok().body(updatedCustomer);
+//         } else {
+//             return ResponseEntity.notFound().build();
+//         }
+//     }
 
-    @DeleteMapping("/deletecustomer/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        userService.deleteCustomer(id);
-        return ResponseEntity.noContent().build();
-    }
+//     @DeleteMapping("/deletecustomer/{id}")
+//     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+//         userService.deleteCustomer(id);
+//         return ResponseEntity.noContent().build();
+//     }
 
 }

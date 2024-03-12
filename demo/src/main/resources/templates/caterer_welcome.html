@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Rubik:wght@900&family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="/styles/index.css" /> -->
+    <link rel="stylesheet" href="/css/queries.css"/>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <style>
+      
+    </style>
+ 
+    <title>Cloud Kitchen</title>
+  </head>
+  <body>
+    <div class="user-dashboard">
+      <header class="header">
+        <a href="about">
+          <img class="logo" src="/img/logo.png" alt="CK logo "
+        /></a>
+        <nav class="nav-div">
+          <ul class="nav-list">
+            <li>
+              <a class="nav-list-link link1" href="Orderlist"
+                ><b>Orders</b></a
+              >
+            </li>
+            <li>
+              <a class="nav-list-link link2" href="Shipping"
+                ><b>Shipping Status</b></a
+              >
+            </li>
+            <li>
+              <a class="nav-list-link link3" href="Payment"
+                ><b>Payment</b></a
+              >
+            </li> 
+            <li>
+              <a class="nav-list-link link3" href="Profile"><b>Profile</b></a>
+            </li>
+          </ul>
+        </nav>
+        <button class="btn-mobile-nav">
+          <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+          <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+        </button>
+      </header>
+    </div>
+ 
+    <section class="containers">
+      <div class="home-container" >
+        <div class="row">
+          <div class="welcome-section">
+            <h1 class="welcome-page-heading">Welcome to <br />Cloud Kitchen</h1>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    <script href="/js/queries.js"></script>
+<script>
+    // logout.js
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+  // Perform logout actions here, such as clearing session data
+  // For demonstration purposes, we'll clear session storage
+  sessionStorage.removeItem('isLoggedIn');
+  
+  // Redirect the user to the login page
+  window.location.href = 'Profile.html'; // Replace 'login.html' with the actual path to your login page
+});
+
+</script>
+  </body>
+</html>
