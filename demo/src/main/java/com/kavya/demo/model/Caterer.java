@@ -15,30 +15,26 @@ public class Caterer {
     private String fullName;
     @Column(unique = true)
     private String email;
-    private String Address;
-    private String Phonenumber;
-    private String Password;
+    private String address;
+    private String phoneNumber;
+    private String password;
+    private String token; // Added token field
 
-    // @OneToMany(mappedBy = "caterer", cascade = CascadeType.ALL)
-    // private List<Order> orders = new ArrayList<>();
+    // Constructors
+    public Caterer() {
+    }
 
-    // @OneToMany(mappedBy = "caterer")
-    // private List<AccountDetails> paymentDetails;
-
-    // @OneToMany(mappedBy = "caterer", cascade = CascadeType.ALL)
-    // private List<Review> reviews = new ArrayList<>();
-    
-    public Caterer() {}
-
-    public Caterer(Long id, String fullName, String email, String address, String phonenumber, String password) {
+    public Caterer(Long id, String fullName, String email, String address, String phoneNumber, String password, String token) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
-        Address = address;
-        Phonenumber = phonenumber;
-        Password = password;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.token = token;
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -64,34 +60,48 @@ public class Caterer {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
-    public String getPhonenumber() {
-        return Phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        Phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    // toString() method
     @Override
     public String toString() {
-        return "Caterer [id=" + id + ", FullName=" + fullName + ", Email=" + email + ", Address=" + Address
-                + ", Phonenumber=" + Phonenumber + ", Password=" + Password + "]";
+        return "Caterer{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
-
-    
 }

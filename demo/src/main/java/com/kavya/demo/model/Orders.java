@@ -1,6 +1,7 @@
 package com.kavya.demo.model;
 
 import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,8 +30,14 @@ public class Orders {
     @JoinColumn(name = "caterer_id")
     private Caterer caterer;
 
+    private String status; // Pending, Accepted, Declined
+
+    private double prize;
+
     // Constructors
     public Orders() {
+        this.status = "Pending";
+        this.prize = 0.0;
     }
 
     // Getters and setters
@@ -80,5 +87,21 @@ public class Orders {
 
     public void setCaterer(Caterer caterer) {
         this.caterer = caterer;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getPrize() {
+        return prize;
+    }
+
+    public void setPrize(double prize) {
+        this.prize = prize;
     }
 }

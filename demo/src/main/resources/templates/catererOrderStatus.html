@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Status</title>
+</head>
+<body>
+    <h2>Order Status</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Dish Name</th>
+                <th>Delivery Date</th>
+                <th>No of People</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Update Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.orderId}"></td>
+                <td th:text="${order.dishName}"></td>
+                <td th:text="${order.deliveryDate}"></td>
+                <td th:text="${order.numberOfPeople}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.price}"></td>
+                <td>
+                    <form th:action="@{/Caterer/OrderStatus}" method="post">
+                        <input type="hidden" name="orderId" th:value="${order.orderId}">
+                        <label>Status:</label>
+                        <select name="status">
+                            <option value="Accepted">Accepted</option>
+                            <option value="Declined">Declined</option>
+                        </select>
+                        <br>
+                        <label>Price:</label>
+                        <input type="number" name="price"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

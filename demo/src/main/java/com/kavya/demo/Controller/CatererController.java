@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import com.kavya.demo.Service.CatererService;
 import com.kavya.demo.model.Caterer;
 
@@ -30,27 +29,28 @@ public class CatererController {
     }
     
     @GetMapping("/catererSignup")
-public String showCatererSignupForm(Model model) {
-    model.addAttribute("caterer", new Caterer());
-    return "caterer_signup";
-}
+    public String showCatererSignupForm(Model model) {
+        model.addAttribute("caterer", new Caterer());
+        return "caterer_signup";
+    }
 
     @GetMapping("/catererLogin")
     public String showLoginForm() {
         return "caterer_login";
     }
 
-
     @GetMapping("/catererWelcome")
-    public String showLoginForm2() {
+    public String showWelcomePage() {
         return "caterer_welcome";
     }
-
 
     @PostMapping("/catererLogin")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         if (catererService.isValidCaterer(email, password)) {
+            // Generate and store token in session
+            String token = catererService.generateToken(email);
             session.setAttribute("userId", email);
+            session.setAttribute("token", token);
             return "caterer_welcome";
         } else {
             String loginFailed = "Invalid credentials";
@@ -58,24 +58,7 @@ public String showCatererSignupForm(Model model) {
             return "caterer_login";
         }
     }
-    
 
-    // @GetMapping("/caterers/{id}")
-    // public String getCatererById(@PathVariable Long id, Model model) {
-    //     Caterer caterer = catererService.getCatererById(id);
-    //     model.addAttribute("caterer", caterer);
-    //     return "caterer_details"; // assuming you have a view named caterer_details to display caterer details
-    // }
+    // Add more methods as needed
 
-    // @PutMapping("/caterers/{id}")
-    // public String updateCaterer(@PathVariable Long id, @ModelAttribute("user") Caterer user, Model model) {
-    //     // Update caterer logic
-    //     return "redirect:/caterers/" + id; // Redirect to the caterer details page
-    // }
-
-    // @DeleteMapping("/caterers/{id}")
-    // public String deleteCaterer(@PathVariable Long id) {
-    //     // Delete caterer logic
-    //     return "redirect:/"; // Redirect to home or any other appropriate page
-    // }
 }
