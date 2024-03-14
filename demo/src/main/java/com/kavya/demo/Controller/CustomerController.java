@@ -3,10 +3,7 @@ package com.kavya.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.kavya.demo.Service.CustomerService;
 import com.kavya.demo.model.Customer;
@@ -26,12 +23,18 @@ public class CustomerController {
     }
 
     @PostMapping("/signup")
-    public String createCustomer(@ModelAttribute Customer customer, Model model) {
+    public String createCustomer(@ModelAttribute Customer customer, Model model, HttpSession session) {
         // Generate a token for the customer
         String token = customerService.generateToken();
         customer.setToken(token);
         
-        customerService.createCustomer(customer);
+        customer = customerService.createCustomer(customer);
+        
+        // Store user's email, ID, and token in session
+        session.setAttribute("userEmail", customer.getEmail());
+        session.setAttribute("customerId", customer.getId());
+        session.setAttribute("token", token);
+        
         String registrationSuccessMessage = "Registration successful. Please login.";
         model.addAttribute("successMessage", registrationSuccessMessage);
         return "login";
@@ -48,8 +51,9 @@ public class CustomerController {
         if (customerService.isValidUser(email, password)) {
             // Retrieve the customer from the database
             Customer customer = customerService.getUserByEmail(email);
-            // Store user's email and token in session
+            // Store user's email, ID, and token in session
             session.setAttribute("userEmail", email);
+            // session.setAttribute("customerId", customer.getId());
             session.setAttribute("token", customer.getToken());
             // Redirect to the home page or any other page
             return "customer_welcome";

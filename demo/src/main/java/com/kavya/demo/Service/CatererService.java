@@ -15,25 +15,20 @@ public class CatererService {
     private CatererRepository catererRepository;
 
     // Generate a token for authentication
-    public String generateToken() {
-        return UUID.randomUUID().toString();
-    }
-
-    public boolean isValidCaterer(String email, String password) {
-        Caterer caterer = catererRepository.findByEmail(email);
-        return caterer != null && caterer.getPassword().equals(password);
-    }
-
-    // Generate token for a caterer and return it
     public String generateToken(String email) {
         Caterer caterer = catererRepository.findByEmail(email);
         if (caterer != null) {
-            String token = generateToken();
+            String token = UUID.randomUUID().toString();
             caterer.setToken(token); // Set token in caterer entity
             catererRepository.save(caterer); // Update caterer entity in the database
             return token;
         }
         return null;
+    }
+
+    public boolean isValidCaterer(String email, String password) {
+        Caterer caterer = catererRepository.findByEmail(email);
+        return caterer != null && caterer.getPassword().equals(password);
     }
 
     public List<Caterer> getAllCaterers() {
