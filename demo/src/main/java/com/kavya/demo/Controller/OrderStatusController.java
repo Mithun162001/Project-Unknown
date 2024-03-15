@@ -1,21 +1,13 @@
 package com.kavya.demo.Controller;
 
-import java.util.List;
-
-// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import com.kavya.demo.Service.OrderService;
 import com.kavya.demo.model.Orders;
-
-import jakarta.servlet.http.HttpSession;
-
-// Import statements for Spring MVC, Services, Models, etc.
+import java.io.IOException;
 
 @Controller
 public class OrderStatusController {
@@ -24,22 +16,26 @@ public class OrderStatusController {
     private OrderService orderService;
 
     @GetMapping("/Caterer/OrderStatus")
-    public String showOrderStatus(Model model, HttpSession session) {
+    public void showOrderStatus(HttpServletResponse response, HttpSession session) throws IOException {
+        // Retrieve the caterer ID associated with the logged-in session
         Long catererId = (Long) session.getAttribute("catererId");
-        List<Orders> orders = orderService.getOrdersByCatererIdAndStatusPending(catererId);
-        model.addAttribute("orders", orders);
-        return "catererOrderStatus";
-    }
 
-    @PostMapping("/Caterer/OrderStatus")
-    public String saveOrderStatus(@RequestParam("orderId") List<Long> orderIds,
-                                  @RequestParam("status") List<String> statuses,
-                                  @RequestParam("price") List<Double> prices) {
-        for (int i = 0; i < orderIds.size(); i++) {
-            orderService.updateOrderStatusAndPrice(orderIds.get(i), statuses.get(i), prices.get(i));
+        // Fetch orders for the logged-in caterer based on catererId
+        Orders order = orderService.getOrdersByCatererId(catererId);
+
+        // Check if order exists
+        if (order != null) {
+            // Write order details directly to the response
+            response.getWriter().println("Order ID: " + order.getOrderId());
+            response.getWriter().println("Dish Name: " + order.getDishName());
+            response.getWriter().println("Delivery Date: " + order.getDeliveryDate());
+            response.getWriter().println("Number of People: " + order.getNumberOfPeople());
+         
+            response.getWriter().println("Status: " + order.getStatus());
+            response.getWriter().println("Price: " + order.getPrize());
+        } else {
+            // If order not found, send a message
+            response.getWriter().println("No orders found for this caterer.");
         }
-        return "redirect:/Caterer/OrderStatus";
     }
-
-    // Add any additional methods as necessary for the controller
 }

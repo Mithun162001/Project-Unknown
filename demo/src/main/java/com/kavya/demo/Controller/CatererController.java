@@ -15,7 +15,7 @@ public class CatererController {
     @Autowired
     private CatererService catererService;
 
-    @PostMapping("/catererSignup")
+    @PostMapping("/caterer/Signup")
     public String createCaterer(@ModelAttribute("caterer") Caterer caterer, Model model) {
         // Create the caterer using the service method
         catererService.createCaterer(caterer);
@@ -28,30 +28,30 @@ public class CatererController {
         return "caterer_login";
     }
     
-    @GetMapping("/catererSignup")
+    @GetMapping("/caterer/Signup")
     public String showCatererSignupForm(Model model) {
         model.addAttribute("caterer", new Caterer());
         return "caterer_signup";
     }
 
-    @GetMapping("/catererLogin")
+    @GetMapping("/caterer/Login")
     public String showLoginForm() {
         return "caterer_login";
     }
 
-    @GetMapping("/catererWelcome")
+    @GetMapping("/caterer/Welcome")
     public String showWelcomePage() {
         return "caterer_welcome";
     }
 
-    @PostMapping("/catererLogin")
+    @PostMapping("/caterer/Login")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         if (catererService.isValidCaterer(email, password)) {
             // Generate and store token in session
             String token = catererService.generateToken(email);
             session.setAttribute("userId", email);
             session.setAttribute("token", token);
-            return "caterer_welcome";
+            return "caterer_welcome"; // Redirect to the welcome page
         } else {
             String loginFailed = "Invalid credentials";
             model.addAttribute("errorMessage", loginFailed);

@@ -163,7 +163,7 @@ function sendthemail() {
       <div class="text-center mb-4">
         <h2 class="animated-text">Join Cloud Kitchen</h2>
       </div>
-      <form th:action="@{/signup}" method="post" id="form" th:object="${customer}">
+      <form th:action="@{/customer/Signup}" method="post" id="form" th:object="${customer}">
         <div class="form-group">
             <label for="fullName" class="label-text">Full Name:</label>
             <input type="text" class="form-control" id="fullName" th:field="*{fullName}" placeholder="Full Name" required />
@@ -197,7 +197,7 @@ function sendthemail() {
       <p th:text="${successMessage}"></p>
   </div>
       <p class="signup-link">
-        Already have an account? <a href="/login">Login</a>
+        Already have an account? <a href="/customer/Login">Login</a>
       </p>
     </div>
 

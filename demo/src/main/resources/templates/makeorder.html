@@ -8,7 +8,7 @@
 <body>
     <h2>Make Order</h2>
     <!-- Ensure the form action is set to call your saveOrder method in the controller -->
-    <form action="#" th:action="@{/saveOrder}" th:object="${order}" method="post">
+    <form action="#" th:action="@{/customer/SaveOrder}" th:object="${order}" method="post">
         <div>
             <label for="dishName">Dish Name:</label>
             <input type="text" id="dishName" name="dishName" required>

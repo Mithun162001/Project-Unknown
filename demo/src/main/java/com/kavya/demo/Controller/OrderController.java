@@ -32,7 +32,7 @@ public class OrderController {
     @Autowired
     private DishService dishService;
 
-    @GetMapping("/makeOrder")
+    @GetMapping("/customer/MakeOrder")
     public String showOrderForm(Model model, HttpSession session) {
         // Check if the user is logged in by checking if email is present in session
         String userEmail = (String) session.getAttribute("userEmail");
@@ -64,7 +64,7 @@ public class OrderController {
         return "makeorder";
     }
 
-    @PostMapping("/saveOrder")
+    @PostMapping("/customer/SaveOrder")
     public String saveOrder(@ModelAttribute("order") Orders order, HttpSession session, @RequestParam Long catererId) {
         // Get the logged-in user's ID from the session
         Long customerId = (Long) session.getAttribute("customerId");
